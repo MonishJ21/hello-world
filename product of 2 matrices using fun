@@ -1,0 +1,63 @@
+#include <stdio.h>
+#define MAX_SIZE 10 
+void inputMatrix(int matrix[MAX_SIZE][MAX_SIZE], int rows, int cols)
+{
+    printf("Enter elements of the matrix:\n");
+    for (int i = 0; i < rows; i++) 
+{
+        for (int j = 0; j < cols; j++)
+{
+            printf("Element [%d][%d]: ", i + 1, j + 1);
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+
+void displayMatrix(int matrix[MAX_SIZE][MAX_SIZE], int rows, int cols)
+{
+    printf("The matrix is:\n");
+    for (int i = 0; i < rows; i++)
+{
+        for (int j = 0; j < cols; j++)
+{
+            printf("%d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+}
+void multiplyMatrices(int matrix1[MAX_SIZE][MAX_SIZE], int matrix2[MAX_SIZE][MAX_SIZE], int result[MAX_SIZE][MAX_SIZE], int rows1, int cols1, int cols2)
+{
+    for (int i = 0; i < rows1; i++)
+{
+        for (int j = 0; j < cols2; j++) 
+{
+            result[i][j] = 0; // Initialize the result element
+            for (int k = 0; k < cols1; k++) 
+{
+                result[i][j] += matrix1[i][k] * matrix2[k][j]; 
+            }
+        }
+    }
+}
+
+int main()
+{
+    int rows1, cols1, rows2, cols2; 
+    int matrix1[MAX_SIZE][MAX_SIZE], matrix2[MAX_SIZE][MAX_SIZE], result[MAX_SIZE][MAX_SIZE];
+    printf("Enter rows and columns for the first matrix: ");
+    scanf("%d %d", &rows1, &cols1);
+    printf("Enter rows and columns for the second matrix: ");
+    scanf("%d %d", &rows2, &cols2);
+    if (cols1 != rows2) 
+{
+        printf("Error: Number of columns in the first matrix must be equal to the number of rows in the second matrix.\n");
+        return 1; 
+    }
+    printf("Input first matrix:\n");
+    inputMatrix(matrix1, rows1, cols1);
+    printf("Input second matrix:\n");
+    inputMatrix(matrix2, rows2, cols2);
+    multiplyMatrices(matrix1, matrix2, result, rows1, cols1, cols2);
+    printf("Resulting matrix after multiplication:\n");
+    displayMatrix(result, rows1, cols2);
+    return 0; 
+}
