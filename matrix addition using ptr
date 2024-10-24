@@ -1,0 +1,52 @@
+#include <stdio.h>
+#define MAX_SIZE 10 
+void addMatrices(int (*A)[MAX_SIZE], int (*B)[MAX_SIZE], int (*C)[MAX_SIZE], int rows, int cols) 
+{
+    for (int i = 0; i < rows; i++) 
+{
+        for (int j = 0; j < cols; j++) 
+{
+            *(*(C + i) + j) = *(*(A + i) + j) + *(*(B + i) + j);
+        }
+    }
+}
+void displayMatrix(int (*matrix)[MAX_SIZE], int rows, int cols) 
+{
+    for (int i = 0; i < rows; i++) 
+{
+        for (int j = 0; j < cols; j++) 
+{
+            printf("%d ", *(*(matrix + i) + j));
+        }
+        printf("\n");
+    }
+}
+int main() 
+{
+    int A[MAX_SIZE][MAX_SIZE], B[MAX_SIZE][MAX_SIZE], C[MAX_SIZE][MAX_SIZE];
+    int rows, cols;
+    printf("Enter the number of rows and columns of the matrices: ");
+    scanf("%d %d", &rows, &cols);
+    printf("Enter elements of the first matrix:\n");
+    for (int i = 0; i < rows; i++) 
+{
+        for (int j = 0; j < cols; j++) 
+{
+            printf("Element [%d][%d]: ", i + 1, j + 1);
+            scanf("%d", &A[i][j]);
+        }
+    }
+    printf("Enter elements of the second matrix:\n");
+    for (int i = 0; i < rows; i++)
+{
+        for (int j = 0; j < cols; j++) 
+{
+            printf("Element [%d][%d]: ", i + 1, j + 1);
+            scanf("%d", &B[i][j]);
+        }
+    }
+    addMatrices(A, B, C, rows, cols);
+    printf("Resulting matrix after addition:\n");
+    displayMatrix(C, rows, cols);
+    return 0; 
+}
