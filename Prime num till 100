@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main() 
+{
+    int num, i, j, isPrime;
+
+    printf("Prime numbers between 1 and 100 are:\n");
+
+    for (num = 2; num <= 100; num++) 
+{
+        isPrime = 1; 
+
+        for (j = 2; j * j <= num; j++) 
+{
+            if (num % j == 0) 
+{
+                isPrime = 0; 
+                break;      
+            }
+        }
+
+        if (isPrime) 
+{
+            printf("%d ", num);
+        }
+    }
+
+    printf("\n");
+    return 0;
+}
