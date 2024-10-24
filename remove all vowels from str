@@ -1,0 +1,25 @@
+#include <stdio.h>
+int main() 
+{
+    char str[100]; 
+    char result[100];
+    int j = 0; 
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+    if (str[strlen(str) - 1] == '\n') 
+{
+        str[strlen(str) - 1] = '\0';
+    }
+    for (int i = 0; str[i] != '\0'; i++) 
+{
+        if (!(str[i] == 'a' || str[i] == 'e' || str[i] == 'i' || str[i] == 'o' || str[i] == 'u' ||
+              str[i] == 'A' || str[i] == 'E' || str[i] == 'I' || str[i] == 'O' || str[i] == 'U')) 
+{
+            result[j] = str[i]; // If it's not a vowel, add it to the result
+            j++; 
+        }
+    }
+    result[j] = '\0'; 
+    printf("String after removing vowels: %s\n", result);
+    return 0;
+}
